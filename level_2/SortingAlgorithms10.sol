@@ -2,7 +2,7 @@
 pragma solidity 0.8.18;
 
 contract SortingAlgorithms {
-    function quickSortRec(uint[10] memory arr, int left, int right) internal pure {
+    function quickSortRec10(uint[10] memory arr, int left, int right) internal pure {
         int i = left;
         int j = right;
         if(i==j) return;
@@ -17,17 +17,17 @@ contract SortingAlgorithms {
             }
         }
         if (left < j)
-            quickSortRec(arr, left, j);
+            quickSortRec10(arr, left, j);
         if (i < right)
-            quickSortRec(arr, i, right);
+            quickSortRec10(arr, i, right);
     }
 
-    function quickSort(uint[10] calldata unsortedArray) external pure returns (uint[10] memory sortedArray) {
+    function quickSort10(uint[10] calldata unsortedArray) external pure returns (uint[10] memory sortedArray) {
         sortedArray = unsortedArray;
-        quickSortRec(sortedArray, 0, int(sortedArray.length - 1));
+        quickSortRec10(sortedArray, 0, int(sortedArray.length - 1));
     }
 
-    function insertionSort(uint256[10] calldata unsortedArray) 
+    function insertionSort10(uint256[10] calldata unsortedArray) 
     external pure returns (uint256[10] memory) {
         uint256[10] memory sortedArray = unsortedArray;
         for (uint i = 0; i < sortedArray.length; i++) {
@@ -42,8 +42,6 @@ contract SortingAlgorithms {
         }
         return sortedArray;
     }
-
-
 function optimal_10_input_sorting_network(uint256[10] calldata unsortedArray) 
     external pure returns (uint256[10] memory) {
         uint256[10] memory sortedArray = unsortedArray;

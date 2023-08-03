@@ -1,50 +1,13 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.18;
 
-contract SortingAlgorithms {
-    function quickSortRec(uint[10] memory arr, int left, int right) internal pure {
-        int i = left;
-        int j = right;
-        if(i==j) return;
-        uint pivot = arr[uint(left + (right - left) / 2)];
-        while (i <= j) {
-            while (arr[uint(i)] < pivot) i++;
-            while (pivot < arr[uint(j)]) j--;
-            if (i <= j) {
-                (arr[uint(i)], arr[uint(j)]) = (arr[uint(j)], arr[uint(i)]);
-                i++;
-                j--;
-            }
-        }
-        if (left < j)
-            quickSortRec(arr, left, j);
-        if (i < right)
-            quickSortRec(arr, i, right);
-    }
+contract Level_2_Solution  {
 
-    function quickSort(uint[10] calldata unsortedArray) external pure returns (uint[10] memory sortedArray) {
-        sortedArray = unsortedArray;
-        quickSortRec(sortedArray, 0, int(sortedArray.length - 1));
-    }
-
-    function insertionSort(uint256[10] calldata unsortedArray) 
-    external pure returns (uint256[10] memory) {
-        uint256[10] memory sortedArray = unsortedArray;
-        for (uint i = 0; i < sortedArray.length; i++) {
-            uint temp = sortedArray[i];
-            uint j;
-
-            for (j = i; j > 0 && sortedArray[j - 1] > temp; j--) {
-                sortedArray[j] = sortedArray[j - 1];
-            }
-
-            sortedArray[j] = temp;
-        }
-        return sortedArray;
-    }
-
-
-function optimal_10_input_sorting_network(uint256[10] calldata unsortedArray) 
+    /*
+        this is the most optimal sorting for a fixed array of 10 elements
+        The solutions uses the 29 comparisons sorting network
+    */
+    function solution(uint256[10] calldata unsortedArray) 
     external pure returns (uint256[10] memory) {
         uint256[10] memory sortedArray = unsortedArray;
         
@@ -135,7 +98,7 @@ function optimal_10_input_sorting_network(uint256[10] calldata unsortedArray)
         if(sortedArray[5] > sortedArray[6]) {
           (sortedArray[5], sortedArray[6]) = (sortedArray[6], sortedArray[5]);
         }
-
         return sortedArray;
     }
+
 }
